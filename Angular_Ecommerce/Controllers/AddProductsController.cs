@@ -48,7 +48,6 @@ namespace Angular_Ecommerce.Controllers
         }
 
        
-
         [HttpDelete]
         [Route("id:guid")]
         public async Task<IActionResult> DeleteProduct([FromBody] Guid id)

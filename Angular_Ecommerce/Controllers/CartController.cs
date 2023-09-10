@@ -25,7 +25,7 @@ namespace Angular_Ecommerce.Controllers
             {
                 return BadRequest("Invalid cart item data");
             }
-            var existingCartItem = userDbContext.Carts.FirstOrDefault(c => c.Product == cartItem.Product);
+            var existingCartItem = userDbContext.Carts.FirstOrDefault(c => c.Id== cartItem.Id);
 
             if (existingCartItem != null)
             {
@@ -47,6 +47,8 @@ namespace Angular_Ecommerce.Controllers
                 return CreatedAtAction(nameof(GetCartItem), new { id = cartItem.Id }, cartItem);
             }
         }
+
+
         [HttpGet("{id}")]
         public ActionResult<Cart> GetCartItem(int id)
         {
@@ -61,7 +63,7 @@ namespace Angular_Ecommerce.Controllers
         }
 
         [HttpDelete("delete/{id}")]
-        public IActionResult DeleteFromCart(int id)
+        public ActionResult<Cart> DeleteFromCart(int id)
         {
             var cartItem = userDbContext.Carts.Find(id);
             if (cartItem == null)
@@ -70,8 +72,8 @@ namespace Angular_Ecommerce.Controllers
             }
 
             userDbContext.Carts.Remove(cartItem);
-            userDbContext.SaveChanges();
-            return NoContent();
+            userDbContext.SaveChanges();    
+            return Ok(cartItem);
         }
 
         

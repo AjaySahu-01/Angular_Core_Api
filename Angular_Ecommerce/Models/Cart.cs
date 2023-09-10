@@ -6,11 +6,10 @@ namespace Angular_Ecommerce.Models
     {
         [Key]
         public int Id { get; set; }
-        public String Product{ get; set; }
         public string Name  { get; set; }
         public double Price{ get; set; }
         public int Quantity { get; set; }
-        public String Img { get; set; }
+        public string Img { get; set; }
 
 
     }
